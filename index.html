@@ -1,4 +1,72 @@
-<!-- There's no HTML if you're using Firefox, but unfortunately  -->
-<!-- you're using Webkit, which doesn't respect the Link header. -->
-<!-- https://bugs.chromium.org/p/chromium/issues/detail?id=19237 -->
 <link rel="stylesheet" href="/illusion.css">
+<img src="oldoldold/mini_me.png" id="mee">
+<canvas id="myCanvas">
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script>
+setInterval(function() {
+  // method to be executed;
+  console.log("hi");
+}, 5000);
+
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+
+    // begin custom shape
+    context.beginPath();
+    context.moveTo(170, 80);
+    context.bezierCurveTo(130, 100, 130, 150, 230, 150);
+    context.bezierCurveTo(250, 180, 320, 180, 340, 150);
+    context.bezierCurveTo(420, 150, 420, 120, 390, 100);
+    context.bezierCurveTo(430, 40, 370, 30, 340, 50);
+    context.bezierCurveTo(320, 5, 250, 20, 250, 50);
+    context.bezierCurveTo(200, 5, 150, 20, 170, 80);
+
+    // complete custom shape
+    context.closePath();
+    context.lineWidth = 5;
+    context.fillStyle = '#8ED6FF';
+    context.fill();
+    context.strokeStyle = 'blue';
+    context.stroke();
+
+var dataURL = canvas.toDataURL();
+
+
+function style_it(image){
+    $.ajax({
+     type: "POST",
+     url: "http://52.42.5.250:2424",
+     data : {"image": dataURL}, 
+     error: function(xhr, error){
+            console.debug(xhr);
+            console.debug(error);
+     },
+     success: function(result) { 
+        var img = document.createElement('img');
+        console.log("I worked!"); 
+        console.log(result); 
+
+        img.src = 'data:image/jpeg;base64,' + result;
+        document.body.appendChild(img);
+        }
+    });
+}
+
+
+function getBase64Image(imgElem) {
+// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
+    var canvas = document.createElement("canvas");
+    canvas.width = imgElem.clientWidth;
+    canvas.height = imgElem.clientHeight;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(imgElem, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+
+style_it()
+</script>
