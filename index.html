@@ -1,72 +1,89 @@
-<link rel="stylesheet" href="/illusion.css">
-<img src="oldoldold/mini_me.png" id="mee">
-<canvas id="myCanvas">
-
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-<script>
-setInterval(function() {
-  // method to be executed;
-  console.log("hi");
-}, 5000);
-
-    var canvas = document.getElementById('myCanvas');
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>Richard's Webpage</title>
+  <meta name="viewport" content="width=960">
+  <meta name="keywords" content="google,bouncing balls,html5" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="./dataURI.js"></script>
+  <link href="main.css" rel="stylesheet">
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+  <noscript><h1>We need javascript to view my page.</h1></noscript>
+  <canvas id="c" onmousemove="mouse_moved(event)"></canvas>
+  
+  <script>
+    // Page Canvas
+    var canvas = document.getElementById('c');
     var context = canvas.getContext('2d');
+    var dataURL = "0";
 
-    // begin custom shape
-    context.beginPath();
-    context.moveTo(170, 80);
-    context.bezierCurveTo(130, 100, 130, 150, 230, 150);
-    context.bezierCurveTo(250, 180, 320, 180, 340, 150);
-    context.bezierCurveTo(420, 150, 420, 120, 390, 100);
-    context.bezierCurveTo(430, 40, 370, 30, 340, 50);
-    context.bezierCurveTo(320, 5, 250, 20, 250, 50);
-    context.bezierCurveTo(200, 5, 150, 20, 170, 80);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    // complete custom shape
-    context.closePath();
-    context.lineWidth = 5;
-    context.fillStyle = '#8ED6FF';
-    context.fill();
-    context.strokeStyle = 'blue';
-    context.stroke();
+    var img = new Image;
+    img.onload = function(){
+      context.drawImage(img, (canvas.width-img.width)/2, (canvas.height-img.height)/2);
+    };
+    img.src = dataURI;
 
-var dataURL = canvas.toDataURL();
+    // Temporary Drawing Canvas
+    var tempCanvas = document.createElement("canvas");
+    var tCtx = tempCanvas.getContext("2d");
 
+    tempCanvas.width = 100;
+    tempCanvas.height = 100;
 
-function style_it(image){
-    $.ajax({
-     type: "POST",
-     url: "http://52.42.5.250:2424",
-     data : {"image": dataURL}, 
-     error: function(xhr, error){
-            console.debug(xhr);
-            console.debug(error);
-     },
-     success: function(result) { 
-        var img = document.createElement('img');
-        console.log("I worked!"); 
-        console.log(result); 
+    // Keeping Track of Mouse Position 
+    var x = 100;
+    var y = 100;
 
-        img.src = 'data:image/jpeg;base64,' + result;
-        document.body.appendChild(img);
-        }
-    });
-}
+    function mouse_moved(event) {
+      x = event.clientX;
+      y = event.clientY;
+    }
 
+    // Posting every second
+    setInterval(function() {
+      // method to be executed;
+      // style_it(canvas.toDataURL());
+      var start_x = x-50;
+      var start_y = y-50;
+      console.log(start_x + " " + start_y);
+      var crop = get_crop(start_x, start_y);
+      style_it(crop, start_x, start_y);
+    }, 1000);
 
-function getBase64Image(imgElem) {
-// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
-    var canvas = document.createElement("canvas");
-    canvas.width = imgElem.clientWidth;
-    canvas.height = imgElem.clientHeight;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(imgElem, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
+    // Getting a Crop from the Canvas
+    function get_crop(oldx, oldy) {
+      //call its drawImage() function passing it the source canvas directly
+      tCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+      tCtx.drawImage(canvas, -oldx, -oldy);
+      return tempCanvas.toDataURL();
+    }
 
-style_it()
+    // Style Request
+    function style_it(image, oldx, oldy){
+        $.ajax({
+         startx : oldx,
+         starty : oldy,
+         type : "POST",
+         url  : "http://52.42.5.250:2424",
+         data : { "image": image }, 
+         error: function(xhr, error){
+                console.debug(xhr);
+                console.debug(error);
+         },
+         success: function(result) { 
+            console.log("new image");
+            var img = document.createElement('img');
+            img.src = 'data:image/jpeg;base64,' + result;
+            context.drawImage(img, this.startx, this.starty);
+         }
+        });
+    }
 </script>
+</body>
+</html>
