@@ -33,8 +33,8 @@
     var tempCanvas = document.createElement("canvas");
     var tCtx = tempCanvas.getContext("2d");
 
-    tempCanvas.width = 100;
-    tempCanvas.height = 100;
+    tempCanvas.width = 50;
+    tempCanvas.height = 50;
 
     // Keeping Track of Mouse Position 
     var x = 100;
@@ -49,12 +49,12 @@
     setInterval(function() {
       // method to be executed;
       // style_it(canvas.toDataURL());
-      var start_x = x-50;
-      var start_y = y-50;
+      var start_x = x-25;
+      var start_y = y-25;
       console.log(start_x + " " + start_y);
       var crop = get_crop(start_x, start_y);
       style_it(crop, start_x, start_y);
-    }, 1000);
+    }, 5000);
 
     // Getting a Crop from the Canvas
     function get_crop(oldx, oldy) {
@@ -66,20 +66,23 @@
 
     // Style Request
     function style_it(image, oldx, oldy){
+        console.log("ajax start!");
         $.ajax({
          startx : oldx,
          starty : oldy,
          type : "POST",
-         url  : "http://52.42.5.250:2424",
-         data : { "image": image }, 
+         url  : "https://17rp0ab6j4.execute-api.us-east-1.amazonaws.com/dev/ping",
+         //data : { "image": image }, 
+         //dataType: "json",
          error: function(xhr, error){
-                console.debug(xhr);
-                console.debug(error);
+                console.log("broke image");
+                console.log(xhr);
+                console.log(error);
          },
          success: function(result) { 
             console.log("new image");
-            var img = document.createElement('img');
-            img.src = 'data:image/jpeg;base64,' + result;
+            var img = document.createElement("img");
+            img.src = "data:image/jpeg;base64," + result;
             context.drawImage(img, this.startx, this.starty);
          }
         });
