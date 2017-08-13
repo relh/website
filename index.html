@@ -72,8 +72,10 @@
          starty : oldy,
          type : "POST",
          url  : "https://17rp0ab6j4.execute-api.us-east-1.amazonaws.com/dev/ping",
-         //data : { "image": image }, 
-         //dataType: "json",
+         crossDomain: true,
+         contentType: 'application/json',
+         data: JSON.stringify({"image": image}),
+         dataType: 'json',
          error: function(xhr, error){
                 console.log("broke image");
                 console.log(xhr);
