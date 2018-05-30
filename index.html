@@ -13,12 +13,13 @@
   
 <div class="content">
   <h1 id="head" class="content__heading">Richard Higgins</h1>
-  <p id="blurb" class="content__teaser">I like ideas. I read a lot. I like programming because I can make what I imagine. Chat to me.</p>
-  <a id="mute" href="#" class="content__cta">Open your ears</a><br><br>
-  <audio id="my-audio" src="media/stillness_in_woe.mp3" muted loop></audio>
+  <p id="blurb" class="content__teaser">Hi, I like ideas, thinking, and reading. I like programming because I can make what I imagine.</p>
+  <button id="mute" class="content__cta">Listen In</button><br><br>
+  <a href="/resume" id="resume" class="content__cta">Resume</a><br><br>
+  <audio id="my-audio" src="media/stillness_in_woe.mp3" autoplay muted loop></audio>
 </div><!-- /content -->
 
-<video id="my-video" class="video" muted loop>
+<video id="my-video" class="video" autoplay muted loop>
   <source src="media/sunrise.mp4" type="video/mp4">
 </video><!-- /video -->
 
@@ -44,6 +45,7 @@
   /**
    * Check if video can play, and play it
    */
+  /*
   var started = false;
   video.addEventListener( "canplay", function() {
     video.play();
@@ -65,7 +67,7 @@
   });
   audio.addEventListener( "canplay", function() {
     audio.play();
-  });
+  });*/
 })();
 </script>
 
