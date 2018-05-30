@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Richard's Webpage</title>
-  <meta name="viewport" content="width=960">
-  <meta name="keywords" content="google,bouncing balls,html5" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="./dataURI.js"></script>
-  <link href="main.css" rel="stylesheet">
-  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <title>relh.net</title>
+  <meta name="description" content="Richard's HTML 1.0 WebPage TM CC R">
+  <meta name="author" description="Richard">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <noscript><h1>We need javascript to view my page.</h1></noscript>
-  <canvas id="c" onmousemove="mouse_moved(event)"></canvas>
   
-<<<<<<< HEAD
 <div class="content">
   <h1 id="head" class="content__heading">Richard Higgins</h1>
   <p id="blurb" class="content__teaser">Hi, I like ideas, thinking, and reading. I like programming because I can make what I imagine.</p>
@@ -36,28 +32,16 @@
   var video = document.getElementById("my-video");
   video.playbackRate = 1.71;
   var audio = document.getElementById("my-audio");
-=======
-  <script>
-    // Page Canvas
-    var canvas = document.getElementById('c');
-    var context = canvas.getContext('2d');
-    var dataURL = "0";
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  var muteButton = document.getElementById("mute");
+  muteButton.addEventListener('click', function () {
+    if (audio.muted) {
+      audio.muted = false;
+    } else {
+      audio.muted = true;
+    } 
+  });
 
-    var img = new Image;
-    img.onload = function(){
-      context.drawImage(img, (canvas.width-img.width)/2, (canvas.height-img.height)/2);
-    };
-    img.src = dataURI;
->>>>>>> master
-
-    // Temporary Drawing Canvas
-    var tempCanvas = document.createElement("canvas");
-    var tCtx = tempCanvas.getContext("2d");
-
-<<<<<<< HEAD
   /**
    * Check if video can play, and play it
    */
@@ -86,64 +70,6 @@
   });*/
 })();
 </script>
-=======
-    tempCanvas.width = 50;
-    tempCanvas.height = 50;
 
-    // Keeping Track of Mouse Position 
-    var x = 100;
-    var y = 100;
-
-    function mouse_moved(event) {
-      x = event.clientX;
-      y = event.clientY;
-    }
->>>>>>> master
-
-    // Posting every second
-    setInterval(function() {
-      // method to be executed;
-      // style_it(canvas.toDataURL());
-      var start_x = x-25;
-      var start_y = y-25;
-      console.log(start_x + " " + start_y);
-      var crop = get_crop(start_x, start_y);
-      style_it(crop, start_x, start_y);
-    }, 5000);
-
-    // Getting a Crop from the Canvas
-    function get_crop(oldx, oldy) {
-      //call its drawImage() function passing it the source canvas directly
-      tCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-      tCtx.drawImage(canvas, -oldx, -oldy);
-      return tempCanvas.toDataURL();
-    }
-
-    // Style Request
-    function style_it(image, oldx, oldy){
-        console.log("ajax start!");
-        $.ajax({
-         startx : oldx,
-         starty : oldy,
-         type : "POST",
-         url  : "https://17rp0ab6j4.execute-api.us-east-1.amazonaws.com/dev/ping",
-         crossDomain: true,
-         contentType: 'application/json',
-         data: JSON.stringify({"image": image}),
-         dataType: 'json',
-         error: function(xhr, error){
-                console.log("broke image");
-                console.log(xhr);
-                console.log(error);
-         },
-         success: function(result) { 
-            console.log("new image");
-            var img = document.createElement("img");
-            img.src = "data:image/jpeg;base64," + result;
-            context.drawImage(img, this.startx, this.starty);
-         }
-        });
-    }
-</script>
 </body>
 </html>
