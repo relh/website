@@ -13,7 +13,7 @@
   
 <div class="content">
   <h1 id="head" class="content__heading">Richard Higgins</h1>
-  <p id="blurb" class="content__teaser">Hi, I like reading, games, coding, and more. I think programming is a great way to combine creativity and engineering.</p>
+  <p id="blurb" class="content__teaser">Hi, welcome to my webpage. Feel free to listen in or view my resume.</p>
   <button id="mute" class="content__cta" style="cursor:pointer;">Sound</button><br><br>
   <a href="/resume" id="resume" class="content__cta">Resume</a><br><br>
   <audio id="my-audio" src="media/stillness_in_woe.mp3" autoplay muted loop></audio>
@@ -24,7 +24,7 @@
 </video><!-- /video -->
 
 <script>
-(function() {
+function start() {
   /**
    * Video element
    * @type {HTMLElement}
@@ -64,7 +64,7 @@
   audio.addEventListener( "canplay", function() {
     audio.play();
   });*/
-})();
+};
 </script>
 
 </body>
