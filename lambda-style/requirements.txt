@@ -1,3 +1,0 @@
-Pillow
-chainer==1.23
-numpy
