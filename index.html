@@ -1,71 +1,503 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.5">
-  <title>relh.net</title>
-  <meta name="description" content="Richard's HTML 1.0 WebPage TM CC R">
-  <meta name="author" description="Richard">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body onload="start()">
+<!DOCTYPE HTML>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-7580334-2');
+  </script>
+
+  <title>Richard Higgins</title>
   
-<div class="content">
-  <h1 id="head" class="content__heading">Richard Higgins</h1>
-  <p id="blurb" class="content__teaser">Hi, welcome to my webpage. Feel free to listen in or view my resume.</p>
-  <button id="mute" class="content__cta" style="cursor:pointer;">Sound</button><br><br>
-  <a href="/resume" id="resume" class="content__cta">Resume</a><br><br>
-  <audio id="my-audio" src="media/stillness_in_woe.mp3" autoplay muted loop></audio>
-</div><!-- /content -->
+  <meta name="author" content="Richard Higgins">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" type="image/png" href="images/elephant.ico">
+</head>
 
-<video id="my-video" class="video" autoplay muted loop>
-  <source src="media/sunrise.mp4" type="video/mp4">
-</video><!-- /video -->
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:63%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Richard Higgins</name>
+              </p>
+              <p>I am a Computer Science PhD student at the <a href="https://www.eecs.umich.edu">University of Michigan</a>, where I work on computer vision.
+              </p>
+              <p>
+                At Michigan I'm currently working on predicting the future state of the sun with <a href="https://arxiv.org/abs/1903.04538">data products</a> from the <a href="https://sdo.gsfc.nasa.gov/">Solar Dynamics Observatory</a>.
+                I did my bachelors at the <a href="http://www.umd.edu/">University of Maryland</a>, where I studied Neuroscience and Computer Science. 
+              </p>
+              <p style="text-align:center">
+                <a href="mailto:relh@umich.edu">Email</a> &nbsp/&nbsp
+                <a href="/resume.pdf">Resume</a> &nbsp/&nbsp
+                <a href="https://scholar.google.com/citations?user=uMZ5Xq4AAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
+                <a href="http://github.com/relh"> Github </a> &nbsp/&nbsp
+                <a href="https://devpost.com/relh"> Devpost </a> &nbsp/&nbsp
+                <a href="https://www.kaggle.com/higgins"> Kaggle </a> &nbsp/&nbsp
+                <a href="http://www.linkedin.com/in/relh0/"> LinkedIn </a>
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <a href="images/RichardHiggins.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/RichardHiggins_circle2.png" class="hoverZoomLink"></a>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research</heading>
+              <p>
+                I'm interested in computer vision, machine learning, neural networks, and self-supervised learning. I want to develop learning systems that hierarchically understand scenes from video.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
 
-<script>
-function start() {
-  /**
-   * Video element
-   * @type {HTMLElement}
-   */
-  var video = document.getElementById("my-video");
-  video.playbackRate = 1.71;
-  var audio = document.getElementById("my-audio");
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-  var muteButton = document.getElementById("mute");
-  muteButton.addEventListener('click', function () {
-    audio.muted = !audio.muted
-  });
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='robots'>
+                  <img src='images/robots.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Matrix Metalloproteinase-9 Regulates Neuronal Circuit Development and Excitability</papertitle>
+              <br>
+              <br>Undergraduate Research
+              <br>College Park, January 2014 - June 2014
+              <br>
+              <p>- Wrote MATLAB functions that classified windows of mouse EEG recordings as seizures with unsupervised learning.</p>
+            </td>
+          </tr>
 
-  /**
-   * Check if video can play, and play it
-   */
-  var started = false;
-  video.addEventListener( "canplay", function() {
-    //video.play();
-    var i = 0;
-    if (started == false) {
-      var colorChanger = setInterval(function () {
-        var head = document.getElementById("head");
-        var blurb = document.getElementById("blurb");
-        var color = 9;
-        head.style.color = "#"+(color-(~~(i/10)))+(color-(i%10))+(color-(~~(i/10)))+(color-(i%10))+(color-(~~(i/10)))+(color-(i%10));
-        blurb.style.color = "#"+(color-(~~(i/10)))+(color-(i%10))+(color-(~~(i/10)))+(color-(i%10))+(color-(~~(i/10)))+(color-(i%10));
-        i = i + 1;
-        if (i >= 99) {
-          clearInterval(colorChanger);
-        }
-      }, 400);
-      started = true;
-    }
-  });
-  /*
-  audio.addEventListener( "canplay", function() {
-    audio.play();
-  });*/
-};
-</script>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='robots'>
+                  <img src='images/robots.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Bio-Inspired Robotics</papertitle>
+              <br>
+              <br>Mechanical Engineering Course
+              <br>College Park, January 2013
+              <br>
+              <p>- Modeled a horse robot in CAD, tested gaits in a simulator, 3d printed, and surpassed distance requirements.</p>
+            </td>
+          </tr>
 
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='cichlid'>
+                  <img src='images/cichlid.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Cichlid Cone Opsin Inversion</papertitle>
+              <br>
+              <br>Undergraduate Research
+              <br>College Park, September 2011 - April 2012
+              <br>
+              <p>- Wrote a Java application that changed images into false-color analogs for different cone opsins, to identify fish conspicuity.</p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Projects</heading>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='kru'>
+                  <img src='images/kru.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Keras Residual Unit</papertitle>
+              <br>
+              <br>Github Project
+              <br>San Leandro, July 2016
+              <br>
+              <p>- Keras residual unit for use as a configurable building block.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='nervesense'>
+                  <img src='images/nervesense.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Nerve Sense</papertitle>
+              <br>
+              <br>Summer Project
+              <br>San Leandro, June 2016 - August 2016
+              <br>
+              <p>- A stacked hourglass model with residual connections for never segmentation in Keras.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='spot'>
+                  <img src='images/spot.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Spot</papertitle>
+              <br>
+              <br>Android Project
+              <br>March 2015
+              <br>
+              <p>- Created a mobile app for sharing photos and videos by location with a map interface. Like Snapmaps.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='cyberspace'>
+                  <img src='images/cyberspace.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Cyberspace</papertitle>
+              <br>
+              <br>Hackathon Project
+              <br>January 2015
+              <br>
+              <p>- Browser for exploring the internet as a 3D city</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='dreambook'>
+                  <img src='images/dreambook.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Dreambook</papertitle>
+              <br>
+              <br>Summer Project
+              <br>July 2015 - August 2015
+              <br>
+              <p>- Service for deep dreaming your Facebook profile picture with Convolutional Neural Networks.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='godgame'>
+                  <img src='images/godgame.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>God Game</papertitle>
+              <br>
+              <br>Hackathon Project
+              <br>Bitcamp, April 2015
+              <br>
+              <p>- Unity/Kinect game in VR using supoerpowers triggered with gestures and gaze</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='clickopedia'>
+                  <img src='images/clickopedia.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Clickopedia</papertitle>
+              <br>
+              <br>Hackathon Project
+              <br>Ann Arbor, January 2015
+              <br>
+              <p>Android app matchmakes people to race through wikipedia</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='ndsb'>
+                  <img src='images/ndsb.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>National Data Science Bowl</papertitle>
+              <br>
+              <br>Winter Project
+              <br>College Park, January 2015
+              <br>
+              <p>- Convolutional neural network for plankton image classification writter in Caffe</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='stockmind'>
+                  <img src='images/stockmind.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>StockMind</papertitle>
+              <br>
+              <br>Summer Project
+              <br>May 2014
+              <br>
+              <p>- Forecast tool using convolutional neural networks and policy gradients</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='hotdrop'>
+                  <img src='images/hotdrop.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Hotdrop</papertitle>
+              <br>
+              <br>Hackathon Project
+              <br>PennApps, 2013 
+              <br>
+              <p>- Android location-based messenger</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='anjoyd'>
+                  <img src='images/anjoyd.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Anjoyd</papertitle>
+              <br>
+              <br>Hackathon Project
+              <br>HackMIT, 2013 
+              <br><em>Finalist</em>
+              <br>
+              <p>- Android steered robot streaming video</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='anjoyd'>
+                  <img src='images/anjoyd.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Arcade Glass</papertitle>
+              <br>
+              <br>Hackathon Project
+              <br>College Park, June 2013 - August 2013
+              <br>
+              <p>- Android games for Google Glass controlled with head motions</p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Experience</heading>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='umich'>
+                  <img src='images/umich.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>University of Michigan</papertitle>
+              <br>
+              <br>Graduate Student Instructor
+              <br>Ann Arbor, December 2018 - May 2019
+              <br>
+              <p>- Led discussions, created assignments with Numpy and Pytorch in Python, graded projects, and hosted office hours for ~150 upper-level CS students</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='voxel51'>
+                  <img src='images/voxel51.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Voxel 51</papertitle>
+              <br>
+              <br>Computer Vision Engineering Intern
+              <br>Ann Arbor, November 2018 - March 2019
+              <br>
+              <p>- Incorporated and trained various object detection neural networks as part of a video analysis platform to identify objects in dashcam footage</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='gigster'>
+                  <img src='images/gigster.png' style='max-width:180px;max-height:180px;padding-left:20px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Gigster</papertitle>
+              <br>
+              <br>Software Engineering Consultant
+              <br>San Francisco, August 2016 - July 2018
+              <br>
+              <p>- Developed a fast style-transfer service on AWS that processes millions of images/day for a social media company
+              <br>- Built a Generative Adversarial Network (GAN) service that performs face attribute transformation for a social media company
+              <br>- Built a Convolutional Neural Network (CNN) backend to provide object recognition in a launched iOS application for a Fortune 500 company
+              <br>- Designed multiple CNN based computer vision systems for Fortune 500 clients with applications including casinos, fashion, and appliances</p>
+            </td>
+          </tr>
+          
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='unscan'>
+                  <img src='images/unscan.png' style='max-width:180px;max-height:180px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Unscan</papertitle>
+              <br>
+              <br>Founder
+              <br>New York, August 2015 - May 2016
+              <br>
+              <p>- A system for automatically extracting text from scanned documents
+              <br>- Built a document processing pipeline on AWS using custom LSTMs for OCR
+              <br>- Built an automated document transcription service on AWS, including developing custom built OCR tools for Python</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='redspread'>
+                  <img src='images/redspread.jpg' style='max-width:180px;max-height:180px;padding-top:20px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Redspread</papertitle>
+              <br>
+              <br>First Engineer
+              <br>New York, March 2015 - August 2015
+              <br>
+              <p>- Developed machine learning tools to automatically scale Kubernetes pods
+              <br>- Clustered and autoscaled Kubernetes pods with unsupervised clustering based on network requests, CPU, and memory use</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='umd'>
+                  <img src='images/umd.jpg' style='max-width:180px;max-height:180px;padding-top:20px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Mammalian Physiology</papertitle>
+              <br>
+              <br>Teaching Assistant
+              <br>College Park, January 2014 - June 2014
+              <br>
+              <p>- Instructed multi-hour discussions on cardiac function, renal system, nervous system, pharmacology, digestion, and more</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='chum'>
+                  <img src='images/chum.jpg' style='max-width:180px;max-height:180px;padding-top:20px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Cooperative Housing University of Maryland</papertitle>
+              <br>
+              <br>Housing Chair, Finance Manager
+              <br>College Park, August 2011 - June 2013
+              <br>
+              <p>- Main contact with landlord and organizer for housing in the ensuing school year</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='whyc'>
+                  <img src='images/whyc.jpg' style='max-width:180px;max-height:180px;padding-top:20px;'></div>
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Woods Hole Yacht Club</papertitle>
+              <br>
+              <br>Sailing Instructor
+              <br>Woods Hole, June - August, 2007 - 2009
+              <br>
+              <p>- Taught children how to sail and not crash into expensive boats</p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:0px">
+              <br>
+              <p style="text-align:right;font-size:small;">
+                <a href="https://people.eecs.berkeley.edu/~barron/">Find the origin of nice webpages</a>
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+  </table>
 </body>
+
 </html>
