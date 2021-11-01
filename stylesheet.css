@@ -86,6 +86,11 @@ img {
     max-width: 250px;
 }
 
+.img-fluid {
+    max-width: 250px;
+    max-height: 250px;
+}
+
 body,
 td,
 th,
