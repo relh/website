@@ -101,6 +101,12 @@ a {
   font-size: 16px
 }
 
+.links {
+    background-image: url(images/richard10.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
 strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 16px;
