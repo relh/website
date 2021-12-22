@@ -104,7 +104,7 @@ a {
 .links {
     background-image: url(images/richard10.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: 33% 50%;
 }
 
 strong {
