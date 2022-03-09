@@ -1,8 +1,14 @@
-@misc{higgins2021synthia,
-      title={SynthIA: A Synthetic Inversion Approximation for the Stokes Vector Fusing SDO and Hinode into a Virtual Observatory}, 
-      author={Richard E. L. Higgins and David F. Fouhey and Spiro K. Antiochos and Graham Barnes and Mark C. M. Cheung and J. Todd Hoeksema and KD Leka and Yang Liu and Peter W. Schuck and Tamas I. Gombosi},
-      year={2021},
-      eprint={2108.12421},
-      archivePrefix={arXiv},
-      primaryClass={astro-ph.IM}
+@article{higgins2022synthia,
+	doi = {10.3847/1538-4365/ac42d5},
+	url = {https://doi.org/10.3847/1538-4365/ac42d5},
+	year = 2022,
+	month = {mar},
+	publisher = {American Astronomical Society},
+	volume = {259},
+	number = {1},
+	pages = {24},
+	author = {Richard E. L. Higgins and David F. Fouhey and Spiro K. Antiochos and Graham Barnes and Mark C. M. Cheung and J. Todd Hoeksema and K. D. Leka and Yang Liu and Peter W. Schuck and Tamas I. Gombosi},
+	title = {{SynthIA}: A Synthetic Inversion Approximation for the Stokes Vector Fusing {SDO} and Hinode into a Virtual Observatory},
+	journal = {The Astrophysical Journal Supplement Series},
+	abstract = {Both NASA’s Solar Dynamics Observatory (SDO) and the JAXA/NASA Hinode mission include spectropolarimetric instruments designed to measure the photospheric magnetic field. SDO’s Helioseismic and Magnetic Imager (HMI) emphasizes full-disk, high-cadence, and good-spatial-resolution data acquisition while Hinode’s Solar Optical Telescope Spectro-Polarimeter (SOT-SP) focuses on high spatial resolution and spectral sampling at the cost of a limited field of view and slower temporal cadence. This work introduces a deep-learning system, named the Synthetic Inversion Approximation (SynthIA), that can enhance both missions by capturing the best of each instrument’s characteristics. We use SynthIA to produce a new magnetogram data product, the Synthetic Hinode Pipeline (SynodeP), that mimics magnetograms from the higher-spectral-resolution Hinode/SOT-SP pipeline, but is derived from full-disk, high-cadence, and lower-spectral-resolution SDO/HMI Stokes observations. Results on held-out data show that SynodeP has good agreement with the Hinode/SOT-SP pipeline inversions, including magnetic fill fraction, which is not provided by the current SDO/HMI pipeline. SynodeP further shows a reduction in the magnitude of the 24 hr oscillations present in the SDO/HMI data. To demonstrate SynthIA’s generality, we show the use of SDO/Atmospheric Imaging Assembly data and subsets of the HMI data as inputs, which enables trade-offs between fidelity to the Hinode/SOT-SP inversions, number of observations used, and temporal artifacts. We discuss possible generalizations of SynthIA and its implications for space-weather modeling. This work is part of the NASA Heliophysics DRIVE Science Center at the University of Michigan under grant NASA 80NSSC20K0600E, and will be open-sourced.}
 }
