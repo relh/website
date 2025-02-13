@@ -47,6 +47,8 @@
          </div>
                  <br><br>
          </div>
+
+         <!-- Timeline -->
          <div class="container my-4">
           <!-- Desktop Timeline View -->
           <div class="d-none d-md-block position-relative" style="height:130px;">
@@ -790,9 +792,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // Generate month markers using the first day of each month.
   const markers = document.getElementById("markers");
   let markerDate = new Date(start.getFullYear(), start.getMonth(), 1);
-  if(markerDate < start) {
-    markerDate.setMonth(markerDate.getMonth()+1);
-  }
+  if(markerDate < start) { markerDate.setMonth(markerDate.getMonth()+1); }
   while(markerDate <= end) {
     const pos = ((markerDate - start) / (end - start)) * 100;
     const m = document.createElement("div");
@@ -821,7 +821,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const newsItemsContainer = document.getElementById("newsItems");
   const newsListContainer = document.getElementById("newsList");
   
-  // Helper: Compute horizontal position for a news date.
+  // Compute horizontal position for a news date.
   function computePosition(dateStr) {
     const newsDate = new Date(dateStr);
     return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
@@ -831,7 +831,7 @@ document.addEventListener("DOMContentLoaded", function(){
   newsData.forEach(item => {
     const pos = computePosition(item.date);
     
-    // Desktop news card: smaller, rotated 45° upward, with a two-line title.
+    // Desktop news card: smaller, rotated 45° upward.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
@@ -840,11 +840,11 @@ document.addEventListener("DOMContentLoaded", function(){
     card.style.transform = "translateX(-50%) rotate(-45deg)";
     card.style.minWidth = "100px";
     card.style.background = "rgba(255,255,255,0.7)";
-    card.innerHTML = `<div class="card-body p-1">
-                        <a href="${item.link}" class="card-title mb-0" style="white-space: normal; word-break: break-word;">
+    card.innerHTML = `<div class="card-body p-0" style="padding:0.25rem;">
+                        <a href="${item.link}" class="card-title mb-0" style="white-space: normal; word-break: break-word; font-size:0.8rem;">
                           ${item.title}
                         </a>
-                        <small class="text-muted d-block">${item.date}</small>
+                        <small class="text-muted d-block" style="font-size:0.7rem;">${item.date}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
     
