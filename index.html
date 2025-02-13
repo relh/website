@@ -777,31 +777,37 @@
           ];
       </script>
 
-<script>
+      <script>
 document.addEventListener("DOMContentLoaded", function(){
-  // Timeline range: from 3 months ago to 3 months ahead.
+  // Timeline range: from 3 months ago to 3 months ahead of today.
   const today = new Date();
-  const start = new Date(today); start.setMonth(start.getMonth()-3);
-  const end = new Date(today); end.setMonth(end.getMonth()+3);
-  const totalMonths = (end.getFullYear()-start.getFullYear())*12 + (end.getMonth()-start.getMonth());
+  const start = new Date(today);
+  start.setMonth(start.getMonth()-3);
+  const end = new Date(today);
+  end.setMonth(end.getMonth()+3);
 
-  // Generate monthly markers.
+  // Generate month markers using the first day of each month within [start, end].
   const markers = document.getElementById("markers");
-  for(let i = 0; i <= totalMonths; i++){
-    const markerDate = new Date(start);
-    markerDate.setMonth(start.getMonth()+i);
+  let markerDate = new Date(start.getFullYear(), start.getMonth(), 1);
+  // Advance to first month whose 1st is >= start.
+  if(markerDate < start) {
+    markerDate.setMonth(markerDate.getMonth()+1);
+  }
+  while(markerDate <= end) {
+    const pos = ((markerDate - start) / (end - start)) * 100;
     const m = document.createElement("div");
     m.style.position = "absolute";
-    m.style.left = (i/totalMonths*100)+"%";
+    m.style.left = pos + "%";
     m.style.transform = "translateX(-50%)";
     m.innerHTML = '<div style="width:1px; height:10px; background:#333; margin:0 auto;"></div>' +
                   '<small style="font-size:0.75rem;">' +
-                  markerDate.toLocaleString("default",{month:"short"}) +
+                  markerDate.toLocaleString("default", { month: "short" }) +
                   '</small>';
     markers.appendChild(m);
+    markerDate.setMonth(markerDate.getMonth()+1);
   }
-  
-  // Today's marker.
+
+  // Add today's marker.
   const todayPos = ((today - start) / (end - start)) * 100;
   const tMarker = document.createElement("div");
   tMarker.style.position = "absolute";
@@ -809,22 +815,22 @@ document.addEventListener("DOMContentLoaded", function(){
   tMarker.style.transform = "translateX(-50%)";
   tMarker.innerHTML = '<div style="width:2px; height:15px; background:red; margin:0 auto;"></div>';
   markers.appendChild(tMarker);
-  
+
   // Containers for news items.
   const newsItemsContainer = document.getElementById("newsItems");
   const newsListContainer = document.getElementById("newsList");
-  
-  // Helper: Compute horizontal position percentage for a news date.
+
+  // Compute horizontal position percentage for a news date.
   function computePosition(dateStr) {
     const newsDate = new Date(dateStr);
     return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
   }
-  
-  // Render each news item.
+
+  // Render news items.
   newsData.forEach(item => {
     const pos = computePosition(item.date);
-    
-    // Desktop news card: smaller, rotated, with a two-line title.
+
+    // Desktop card: small, rotated 45° upward, with a two-line title.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
@@ -834,13 +840,13 @@ document.addEventListener("DOMContentLoaded", function(){
     card.style.minWidth = "100px";
     card.style.background = "rgba(255,255,255,0.7)";
     card.innerHTML = `<div class="card-body p-1">
-                        <a href="${item.link}" class="card-title mb-0" style="white-space:normal; word-break:break-word;">
+                        <a href="${item.link}" class="card-title mb-0" style="white-space: normal; word-break: break-word;">
                           ${item.title}
                         </a>
                         <small class="text-muted d-block">${item.date}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
-    
+
     // Mobile list item.
     const li = document.createElement("li");
     li.className = "list-group-item";
