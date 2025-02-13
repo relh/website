@@ -47,7 +47,7 @@
          </div>
                  <br><br>
          </div>
-        <div class="container my-4">
+         <div class="container my-4">
           <!-- Desktop Timeline View -->
           <div class="d-none d-md-block position-relative" style="height:130px;">
             <!-- Timeline line -->
@@ -777,19 +777,18 @@
           ];
       </script>
 
-      <script>
+<script>
 document.addEventListener("DOMContentLoaded", function(){
-  // Timeline range: from 3 months ago to 3 months ahead of today.
+  // Timeline range: from 3 months ago to 3 months ahead.
   const today = new Date();
   const start = new Date(today);
   start.setMonth(start.getMonth()-3);
   const end = new Date(today);
   end.setMonth(end.getMonth()+3);
 
-  // Generate month markers using the first day of each month within [start, end].
+  // Generate month markers using the first day of each month.
   const markers = document.getElementById("markers");
   let markerDate = new Date(start.getFullYear(), start.getMonth(), 1);
-  // Advance to first month whose 1st is >= start.
   if(markerDate < start) {
     markerDate.setMonth(markerDate.getMonth()+1);
   }
@@ -806,31 +805,32 @@ document.addEventListener("DOMContentLoaded", function(){
     markers.appendChild(m);
     markerDate.setMonth(markerDate.getMonth()+1);
   }
-
-  // Add today's marker.
+  
+  // Add today's marker with a "Now" label.
   const todayPos = ((today - start) / (end - start)) * 100;
   const tMarker = document.createElement("div");
   tMarker.style.position = "absolute";
   tMarker.style.left = todayPos + "%";
   tMarker.style.transform = "translateX(-50%)";
-  tMarker.innerHTML = '<div style="width:2px; height:15px; background:red; margin:0 auto;"></div>';
+  tMarker.innerHTML = '<div style="width:2px; height:15px; background:red; margin:0 auto;"></div>' +
+                      '<small style="font-size:0.75rem; color:red;">Now</small>';
   markers.appendChild(tMarker);
-
+  
   // Containers for news items.
   const newsItemsContainer = document.getElementById("newsItems");
   const newsListContainer = document.getElementById("newsList");
-
-  // Compute horizontal position percentage for a news date.
+  
+  // Helper: Compute horizontal position for a news date.
   function computePosition(dateStr) {
     const newsDate = new Date(dateStr);
     return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
   }
-
+  
   // Render news items.
   newsData.forEach(item => {
     const pos = computePosition(item.date);
-
-    // Desktop card: small, rotated 45° upward, with a two-line title.
+    
+    // Desktop news card: smaller, rotated 45° upward, with a two-line title.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
@@ -846,7 +846,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         <small class="text-muted d-block">${item.date}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
-
+    
     // Mobile list item.
     const li = document.createElement("li");
     li.className = "list-group-item";
@@ -858,6 +858,5 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 });
 </script>
-
    </body>
 </html>
