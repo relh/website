@@ -50,12 +50,12 @@
          <div class="container my-4">
           <!-- Desktop Timeline View -->
           <div class="d-none d-md-block position-relative" style="height:150px;">
-            <!-- Timeline line -->
-            <div class="position-absolute w-100" style="top:60%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
-            <!-- Markers container -->
-            <div class="position-absolute w-100" id="markers" style="top:50%;"></div>
-            <!-- News items container -->
-            <div class="position-absolute w-100" id="newsItems" style="top:0;"></div>
+            <!-- Timeline line (shifted downward) -->
+            <div class="position-absolute w-100" style="top:70%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
+            <!-- Markers -->
+            <div class="position-absolute w-100" id="markers" style="top:60%;"></div>
+            <!-- News cards container -->
+            <div class="position-absolute w-100" id="newsItems" style="top:10px;"></div>
           </div>
 
           <!-- Mobile List View -->
@@ -766,72 +766,71 @@
       </script>
       <script>
 document.addEventListener("DOMContentLoaded", function(){
-  // Define timeline range: 6 months back and 6 months forward from today.
+  // Timeline range: from 6 months ago to 6 months ahead.
   const today = new Date();
   const start = new Date(today); start.setMonth(start.getMonth()-6);
   const end = new Date(today); end.setMonth(end.getMonth()+6);
   const totalMonths = (end.getFullYear()-start.getFullYear())*12 + (end.getMonth()-start.getMonth());
 
   // Generate monthly markers.
-  const markersContainer = document.getElementById("markers");
+  const markers = document.getElementById("markers");
   for(let i = 0; i <= totalMonths; i++){
     const markerDate = new Date(start);
     markerDate.setMonth(start.getMonth()+i);
-    const marker = document.createElement("div");
-    marker.style.position = "absolute";
-    marker.style.left = (i/totalMonths*100)+"%";
-    marker.style.transform = "translateX(-50%)";
-    marker.innerHTML = '<div style="width:1px; height:10px; background:#333; margin:0 auto;"></div>' +
-                       '<small style="font-size:0.75rem;">' +
-                         markerDate.toLocaleString('default',{month:'short'}) +
-                       '</small>';
-    markersContainer.appendChild(marker);
+    const m = document.createElement("div");
+    m.style.position = "absolute";
+    m.style.left = (i/totalMonths*100)+"%";
+    m.style.transform = "translateX(-50%)";
+    m.innerHTML = '<div style="width:1px; height:10px; background:#333; margin:0 auto;"></div>' +
+                  '<small style="font-size:0.75rem;">' +
+                  markerDate.toLocaleString("default",{month:"short"}) +
+                  '</small>';
+    markers.appendChild(m);
   }
 
-  // Single source for news items.
-  const newsItemsData = [
-    { title: "Graduated PhD", description: "Learning Dense Visual Features for the Sun and Natural Scenes.", date: "2025-01-16" },
-    { title: "Talk at Physics of Intelligence Group", description: "Presenting research on composable neural verbs.", date: "2025-02-27" }
+  // News items with links.
+  const newsData = [
+    { title: "PhD Defense!", date: "2025-01-16", link: "https://cse.engin.umich.edu/event/learning-dense-visual-features-for-the-sun-and-natural-scenes" },
+    { title: "Physics of Intelligence Talk", date: "2025-02-27", link: "https://news.harvard.edu/gazette/story/newsplus/gift-establishes-new-program-in-physics-of-intelligence-at-center-for-brain-science/" }
+    { title: "Have found a job?", date: "2025-04-30", link: "https://relh.net" }
     // Add more items as needed.
   ];
 
-  // Compute the left position percentage for a given news date.
-  function computePosition(newsDateStr) {
-    const newsDate = new Date(newsDateStr);
-    const pos = ((newsDate - start) / (end - start)) * 100;
-    return Math.max(0, Math.min(100, pos));
+  // Compute horizontal position percentage for a news date.
+  function computePosition(dateStr) {
+    const newsDate = new Date(dateStr);
+    return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
   }
 
-  // Render news items in both desktop and mobile views.
   const newsItemsContainer = document.getElementById("newsItems");
   const newsListContainer = document.getElementById("newsList");
 
-  newsItemsData.forEach(item => {
+  newsData.forEach(item => {
     const formattedDate = new Date(item.date).toLocaleDateString();
     const pos = computePosition(item.date);
 
-    // Create desktop timeline card.
+    // Desktop card (small, transparent, with title linked)
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
     card.style.left = pos + "%";
+    card.style.top = "10px";
     card.style.transform = "translateX(-50%)";
-    card.style.minWidth = "150px";
-    card.innerHTML = `<div class="card-body p-2">
-                        <h6 class="card-title mb-1">${item.title}</h6>
-                        <p class="card-text mb-1">${item.description}</p>
-                        <small class="text-muted">${formattedDate}</small>
+    card.style.minWidth = "100px";
+    card.style.background = "rgba(255,255,255,0.7)";
+    card.innerHTML = `<div class="card-body p-1">
+                        <a href="${item.link}" class="card-title mb-0">${item.title}</a>
+                        <small class="text-muted d-block">${formattedDate}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
 
-    // Create mobile list item.
+    // Mobile list item.
     const li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML = `<div class="d-flex justify-content-between">
-                      <span>${item.title}</span>
+                      <a href="${item.link}">${item.title}</a>
                       <small class="text-muted">${formattedDate}</small>
-                    </div>
-                    <p class="mb-0">${item.description}</p>`;
+                    </div>`;
     newsListContainer.appendChild(li);
   });
 });
