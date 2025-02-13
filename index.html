@@ -49,20 +49,22 @@
          </div>
          <div class="container my-4">
           <!-- Desktop Timeline View -->
-          <div class="d-none d-md-block position-relative" style="height:150px;">
-            <!-- Timeline line (shifted downward) -->
-            <div class="position-absolute w-100" style="top:70%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
-            <!-- Markers -->
-            <div class="position-absolute w-100" id="markers" style="top:60%;"></div>
+          <div class="d-none d-md-block position-relative" style="height:130px;">
+            <!-- Timeline line with less padding below -->
+            <div class="position-absolute w-100" style="top:65%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
+            <!-- Markers container -->
+            <div class="position-absolute w-100" id="markers" style="top:55%;"></div>
             <!-- News cards container -->
             <div class="position-absolute w-100" id="newsItems" style="top:10px;"></div>
           </div>
 
           <!-- Mobile List View -->
           <div class="d-md-none">
+            <h4 class="mb-2" style="border-bottom: 1px solid #ccc;">News</h4>
             <ul class="list-group" id="newsList"></ul>
           </div>
         </div>
+
          <div class="container mb-3" style="display:flex; justify-content:center;">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                <li class="nav-item" role="presentation">
@@ -764,12 +766,15 @@
             setInterval(changeBackgroundImage, 7500);
         });
       </script>
-      <script>
+
+  <script>
 document.addEventListener("DOMContentLoaded", function(){
-  // Timeline range: from 6 months ago to 6 months ahead.
+  // Timeline range: 6 months back and 6 months ahead.
   const today = new Date();
-  const start = new Date(today); start.setMonth(start.getMonth()-6);
-  const end = new Date(today); end.setMonth(end.getMonth()+6);
+  const start = new Date(today);
+  start.setMonth(start.getMonth()-6);
+  const end = new Date(today);
+  end.setMonth(end.getMonth()+6);
   const totalMonths = (end.getFullYear()-start.getFullYear())*12 + (end.getMonth()-start.getMonth());
 
   // Generate monthly markers.
@@ -788,15 +793,24 @@ document.addEventListener("DOMContentLoaded", function(){
     markers.appendChild(m);
   }
 
+  // Add today's marker.
+  const todayPos = ((today - start) / (end - start)) * 100;
+  const tMarker = document.createElement("div");
+  tMarker.style.position = "absolute";
+  tMarker.style.left = todayPos + "%";
+  tMarker.style.transform = "translateX(-50%)";
+  tMarker.innerHTML = '<div style="width:2px; height:15px; background:red; margin:0 auto;"></div>';
+  markers.appendChild(tMarker);
+
   // News items with links.
   const newsData = [
     { title: "PhD Defense!", date: "2025-01-16", link: "https://cse.engin.umich.edu/event/learning-dense-visual-features-for-the-sun-and-natural-scenes" },
-    { title: "Physics of Intelligence Talk", date: "2025-02-27", link: "https://news.harvard.edu/gazette/story/newsplus/gift-establishes-new-program-in-physics-of-intelligence-at-center-for-brain-science/" },
+    { title: "Talk @ Physics of Intelligence", date: "2025-02-27", link: "https://news.harvard.edu/gazette/story/newsplus/gift-establishes-new-program-in-physics-of-intelligence-at-center-for-brain-science/" },
     { title: "Have found a job?", date: "2025-04-30", link: "https://relh.net" }
     // Add more items as needed.
   ];
 
-  // Compute horizontal position percentage for a news date.
+  // Compute horizontal position percentage for a given news date.
   function computePosition(dateStr) {
     const newsDate = new Date(dateStr);
     return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
@@ -806,21 +820,21 @@ document.addEventListener("DOMContentLoaded", function(){
   const newsListContainer = document.getElementById("newsList");
 
   newsData.forEach(item => {
-    const formattedDate = new Date(item.date).toLocaleDateString();
     const pos = computePosition(item.date);
 
-    // Desktop card (small, transparent, with title linked)
+    // Desktop card: smaller, rotated 45° upward.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
     card.style.left = pos + "%";
     card.style.top = "10px";
-    card.style.transform = "translateX(-50%)";
+    // Rotate 45° upward (counter-clockwise).
+    card.style.transform = "translateX(-50%) rotate(-45deg)";
     card.style.minWidth = "100px";
     card.style.background = "rgba(255,255,255,0.7)";
     card.innerHTML = `<div class="card-body p-1">
                         <a href="${item.link}" class="card-title mb-0">${item.title}</a>
-                        <small class="text-muted d-block">${formattedDate}</small>
+                        <small class="text-muted d-block">${item.date}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
 
@@ -829,11 +843,12 @@ document.addEventListener("DOMContentLoaded", function(){
     li.className = "list-group-item";
     li.innerHTML = `<div class="d-flex justify-content-between">
                       <a href="${item.link}">${item.title}</a>
-                      <small class="text-muted">${formattedDate}</small>
+                      <small class="text-muted">${item.date}</small>
                     </div>`;
     newsListContainer.appendChild(li);
   });
 });
 </script>
+
    </body>
 </html>
