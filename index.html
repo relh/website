@@ -47,6 +47,22 @@
          </div>
                  <br><br>
          </div>
+         <div class="container my-4">
+          <!-- Desktop Timeline View -->
+          <div class="d-none d-md-block position-relative" style="height:150px;">
+            <!-- Timeline line -->
+            <div class="position-absolute w-100" style="top:60%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
+            <!-- Markers container -->
+            <div class="position-absolute w-100" id="markers" style="top:50%;"></div>
+            <!-- News items container -->
+            <div class="position-absolute w-100" id="newsItems" style="top:0;"></div>
+          </div>
+
+          <!-- Mobile List View -->
+          <div class="d-md-none">
+            <ul class="list-group" id="newsList"></ul>
+          </div>
+        </div>
          <div class="container mb-3" style="display:flex; justify-content:center;">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                <li class="nav-item" role="presentation">
@@ -748,5 +764,77 @@
             setInterval(changeBackgroundImage, 7500);
         });
       </script>
+      <script>
+document.addEventListener("DOMContentLoaded", function(){
+  // Define timeline range: 6 months back and 6 months forward from today.
+  const today = new Date();
+  const start = new Date(today); start.setMonth(start.getMonth()-6);
+  const end = new Date(today); end.setMonth(end.getMonth()+6);
+  const totalMonths = (end.getFullYear()-start.getFullYear())*12 + (end.getMonth()-start.getMonth());
+
+  // Generate monthly markers.
+  const markersContainer = document.getElementById("markers");
+  for(let i = 0; i <= totalMonths; i++){
+    const markerDate = new Date(start);
+    markerDate.setMonth(start.getMonth()+i);
+    const marker = document.createElement("div");
+    marker.style.position = "absolute";
+    marker.style.left = (i/totalMonths*100)+"%";
+    marker.style.transform = "translateX(-50%)";
+    marker.innerHTML = '<div style="width:1px; height:10px; background:#333; margin:0 auto;"></div>' +
+                       '<small style="font-size:0.75rem;">' +
+                         markerDate.toLocaleString('default',{month:'short'}) +
+                       '</small>';
+    markersContainer.appendChild(marker);
+  }
+
+  // Single source for news items.
+  const newsItemsData = [
+    { title: "Graduated PhD", description: "Learning Dense Visual Features for the Sun and Natural Scenes.", date: "2025-01-16" },
+    { title: "Talk at Physics of Intelligence Group", description: "Presenting research on composable neural verbs.", date: "2025-02-27" }
+    // Add more items as needed.
+  ];
+
+  // Compute the left position percentage for a given news date.
+  function computePosition(newsDateStr) {
+    const newsDate = new Date(newsDateStr);
+    const pos = ((newsDate - start) / (end - start)) * 100;
+    return Math.max(0, Math.min(100, pos));
+  }
+
+  // Render news items in both desktop and mobile views.
+  const newsItemsContainer = document.getElementById("newsItems");
+  const newsListContainer = document.getElementById("newsList");
+
+  newsItemsData.forEach(item => {
+    const formattedDate = new Date(item.date).toLocaleDateString();
+    const pos = computePosition(item.date);
+
+    // Create desktop timeline card.
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.position = "absolute";
+    card.style.left = pos + "%";
+    card.style.transform = "translateX(-50%)";
+    card.style.minWidth = "150px";
+    card.innerHTML = `<div class="card-body p-2">
+                        <h6 class="card-title mb-1">${item.title}</h6>
+                        <p class="card-text mb-1">${item.description}</p>
+                        <small class="text-muted">${formattedDate}</small>
+                      </div>`;
+    newsItemsContainer.appendChild(card);
+
+    // Create mobile list item.
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `<div class="d-flex justify-content-between">
+                      <span>${item.title}</span>
+                      <small class="text-muted">${formattedDate}</small>
+                    </div>
+                    <p class="mb-0">${item.description}</p>`;
+    newsListContainer.appendChild(li);
+  });
+});
+</script>
    </body>
 </html>
