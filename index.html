@@ -46,11 +46,10 @@
          </div>
          </div>
                  <br><br>
-         </div>
-         <div class="container my-4">
+        <div class="container my-4">
           <!-- Desktop Timeline View -->
           <div class="d-none d-md-block position-relative" style="height:130px;">
-            <!-- Timeline line with less padding below -->
+            <!-- Timeline line -->
             <div class="position-absolute w-100" style="top:65%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
             <!-- Markers container -->
             <div class="position-absolute w-100" id="markers" style="top:55%;"></div>
@@ -60,7 +59,7 @@
 
           <!-- Mobile List View -->
           <div class="d-md-none">
-            <h4 class="mb-2" style="border-bottom: 1px solid #ccc;">News</h4>
+            <h4 class="mb-2" style="border-bottom:1px solid #ccc;">News</h4>
             <ul class="list-group" id="newsList"></ul>
           </div>
         </div>
@@ -767,14 +766,22 @@
         });
       </script>
 
-  <script>
+      <script>
+          // News items with links.
+          const newsData = [
+            { title: "PhD Defense!", date: "2025-01-16", link: "https://cse.engin.umich.edu/event/learning-dense-visual-features-for-the-sun-and-natural-scenes" },
+            { title: "Talk @ Physics of Intelligence", date: "2025-02-27", link: "https://news.harvard.edu/gazette/story/newsplus/gift-establishes-new-program-in-physics-of-intelligence-at-center-for-brain-science/" },
+            { title: "Have found a job?", date: "2025-04-30", link: "https://relh.net" }
+            // Add more items as needed.
+          ];
+      </script>
+
+<script>
 document.addEventListener("DOMContentLoaded", function(){
-  // Timeline range: 6 months back and 6 months ahead.
+  // Timeline range: from 3 months ago to 3 months ahead.
   const today = new Date();
-  const start = new Date(today);
-  start.setMonth(start.getMonth()-6);
-  const end = new Date(today);
-  end.setMonth(end.getMonth()+6);
+  const start = new Date(today); start.setMonth(start.getMonth()-3);
+  const end = new Date(today); end.setMonth(end.getMonth()+3);
   const totalMonths = (end.getFullYear()-start.getFullYear())*12 + (end.getMonth()-start.getMonth());
 
   // Generate monthly markers.
@@ -792,8 +799,8 @@ document.addEventListener("DOMContentLoaded", function(){
                   '</small>';
     markers.appendChild(m);
   }
-
-  // Add today's marker.
+  
+  // Today's marker.
   const todayPos = ((today - start) / (end - start)) * 100;
   const tMarker = document.createElement("div");
   tMarker.style.position = "absolute";
@@ -801,43 +808,38 @@ document.addEventListener("DOMContentLoaded", function(){
   tMarker.style.transform = "translateX(-50%)";
   tMarker.innerHTML = '<div style="width:2px; height:15px; background:red; margin:0 auto;"></div>';
   markers.appendChild(tMarker);
-
-  // News items with links.
-  const newsData = [
-    { title: "PhD Defense!", date: "2025-01-16", link: "https://cse.engin.umich.edu/event/learning-dense-visual-features-for-the-sun-and-natural-scenes" },
-    { title: "Talk @ Physics of Intelligence", date: "2025-02-27", link: "https://news.harvard.edu/gazette/story/newsplus/gift-establishes-new-program-in-physics-of-intelligence-at-center-for-brain-science/" },
-    { title: "Have found a job?", date: "2025-04-30", link: "https://relh.net" }
-    // Add more items as needed.
-  ];
-
-  // Compute horizontal position percentage for a given news date.
+  
+  // Containers for news items.
+  const newsItemsContainer = document.getElementById("newsItems");
+  const newsListContainer = document.getElementById("newsList");
+  
+  // Helper: Compute horizontal position percentage for a news date.
   function computePosition(dateStr) {
     const newsDate = new Date(dateStr);
     return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
   }
-
-  const newsItemsContainer = document.getElementById("newsItems");
-  const newsListContainer = document.getElementById("newsList");
-
+  
+  // Render each news item.
   newsData.forEach(item => {
     const pos = computePosition(item.date);
-
-    // Desktop card: smaller, rotated 45° upward.
+    
+    // Desktop news card: smaller, rotated, with a two-line title.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
     card.style.left = pos + "%";
     card.style.top = "10px";
-    // Rotate 45° upward (counter-clockwise).
     card.style.transform = "translateX(-50%) rotate(-45deg)";
     card.style.minWidth = "100px";
     card.style.background = "rgba(255,255,255,0.7)";
     card.innerHTML = `<div class="card-body p-1">
-                        <a href="${item.link}" class="card-title mb-0">${item.title}</a>
+                        <a href="${item.link}" class="card-title mb-0" style="white-space:normal; word-break:break-word;">
+                          ${item.title}
+                        </a>
                         <small class="text-muted d-block">${item.date}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
-
+    
     // Mobile list item.
     const li = document.createElement("li");
     li.className = "list-group-item";
