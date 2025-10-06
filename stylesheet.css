@@ -91,6 +91,16 @@ img {
     max-height: 250px;
 }
 
+#pills-work .row > .col-12.col-md-4 {
+    display: flex;
+    justify-content: center;
+}
+
+#pills-work .row > .col-12.col-md-4 img {
+    width: min(100%, 220px);
+    height: auto;
+}
+
 body,
 td,
 th,
