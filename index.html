@@ -16,23 +16,21 @@
       <meta name="author" content="Richard E.L. Higgins">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" type="image/png" href="favicon.ico">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <style>
-      </style>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
    </head>
    <body>
       <div class="container">
-         <div class="links" style="padding: 1%; margin-bottom: 3%;">
+         <div class="links">
                  <br><br>
          <div class="row">
          <div class="col-md-5 col-3"></div>
          <div class="col-md-5 col-9 mt-auto mb-auto">
-           <p style="text-align:center"><name style="background-color: #FFFFFF; padding: 5px;">Richard E.L. Higgins</name></p><br>
-           <p style="background-color: #FFFFFF; padding: 5px;">I am a Research Scientist at <a href="https://softmax.com/">Softmax</a>. I was a visiting academic at <a href="https://www.nyu.edu/">NYU</a>. I recently graduated with a PhD in Computer Science and Engineering from the <a href="https://www.eecs.umich.edu">University of Michigan</a>, advised by <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a>.</p>
-           <p style="background-color: #FFFFFF; padding: 5px;">After working on the sun and hands, I worked on diffusion for world-generation and scene editing. I did my masters at Michigan and my bachelors at the <a href="http://www.umd.edu/">University of Maryland</a>, where I studied Neuroscience and Computer Science.</p>
+           <p class="text-center"><name class="hero-name">Richard E.L. Higgins</name></p><br>
+           <p class="hero-text">I am a Research Scientist at <a href="https://softmax.com/">Softmax</a>. I was a visiting academic at <a href="https://www.nyu.edu/">NYU</a>. I recently graduated with a PhD in Computer Science and Engineering from the <a href="https://www.eecs.umich.edu">University of Michigan</a>, advised by <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a>.</p>
+           <p class="hero-text">After working on the sun and hands, I worked on diffusion for world-generation and scene editing. I did my masters at Michigan and my bachelors at the <a href="http://www.umd.edu/">University of Maryland</a>, where I studied Neuroscience and Computer Science.</p>
          </div>
-         <div class="col-md-2 col-9 mx-auto mt-auto mb-auto" align="center">
-             <span style="background-color: #FFFFFF; padding: 5px; display: table;">
+         <div class="col-md-2 col-9 mx-auto mt-auto mb-auto text-center">
+             <span class="hero-links">
                 <a href="mailto:richard@relh.net">Email</a><br>
                 <a href="http://relh.net/relh_cv.pdf">CV</a> <br>
                 <!-- <a href="http://relh.net/relh_cv.pdf">Resume</a> <br> -->
@@ -49,25 +47,25 @@
          </div>
 
          <!-- Timeline -->
-         <div class="container my-4">
+         <div class="container mt-4 mb-0 timeline-container">
           <!-- Desktop Timeline View -->
-          <div class="d-none d-md-block position-relative" style="height:130px;">
+          <div class="d-none d-md-block position-relative timeline-desktop">
             <!-- Timeline line -->
-            <div id="timelineLine" class="position-absolute w-100" style="top:65%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
+            <div id="timelineLine" class="position-absolute w-100 timeline-line"></div>
             <!-- Markers container -->
-            <div class="position-absolute w-100" id="markers" style="top:55%;"></div>
+            <div class="position-absolute w-100 timeline-markers" id="markers"></div>
             <!-- News cards container -->
-            <div class="position-absolute w-100" id="newsItems" style="top:10px;"></div>
+            <div class="position-absolute w-100 timeline-news" id="newsItems"></div>
           </div>
 
           <!-- Mobile List View -->
           <div class="d-md-none">
-            <h4 class="mb-2" style="border-bottom:1px solid #ccc;">News</h4>
+            <h4 class="mb-2 news-heading">News</h4>
             <ul class="list-group" id="newsList"></ul>
           </div>
         </div>
 
-         <div class="container mb-3" style="display:flex; justify-content:center;">
+         <div class="container mb-3 nav-center tight-nav">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="pills-research-tab" data-bs-toggle="pill" data-bs-target="#pills-research" type="button" role="tab" aria-controls="pills-research" aria-selected="true">Research</button>
@@ -92,7 +90,7 @@
                </center></div><br>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/seldom.png' class="img-fluid">
+                     <img loading="lazy" src='images/seldom.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                         <papertitle>SELDOM: Scene Editing via Latent Diffusion with Object-centric Modifications</papertitle>
@@ -104,7 +102,7 @@
                      <p>‣ A latent diffusion image editing method that separates states and actions into composable neural noun and verb representations.</p>
                   </div>
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/supersynthia2024.png' class="img-fluid">
+                     <img loading="lazy" src='images/supersynthia2024.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://rw3544.github.io/SuperSynthIA/">
@@ -124,7 +122,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/newhands2023.png' class="img-fluid">
+                     <img loading="lazy" src='images/newhands2023.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://github.com/ddshan/hands23_data/">
@@ -141,7 +139,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/moves2023.png' class="img-fluid">
+                     <img loading="lazy" src='images/moves2023.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://relh.github.io/moves/">
@@ -160,7 +158,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/visor2022.png' class="img-fluid">
+                     <img loading="lazy" src='images/visor2022.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://epic-kitchens.github.io/VISOR/">
@@ -178,7 +176,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/mitigating2022.png' class="img-fluid">
+                     <img loading="lazy" src='images/mitigating2022.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://arxiv.org/abs/2207.11572">
@@ -195,7 +193,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/cohesiv-min.png' class="img-fluid">
+                     <img loading="lazy" src='images/cohesiv-min.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://proceedings.neurips.cc/paper/2021/hash/2e976ab88a42d723d9f2ee6027b707f5-Abstract.html">
@@ -211,7 +209,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/synthia.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/synthia.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://arxiv.org/abs/2108.12421">
@@ -229,7 +227,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/fae2021.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/fae2021.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://arxiv.org/abs/2103.17273">
@@ -251,7 +249,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/valproic.png' class="img-fluid">
+                     <img loading="lazy" src='images/valproic.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://link.springer.com/article/10.1007/s11095-017-2130-6">
@@ -266,7 +264,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/jmn2016.png' class="img-fluid">
+                     <img loading="lazy" src='images/jmn2016.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <a href="https://www.ncbi.nlm.nih.gov/pubmed/26093382">
@@ -283,7 +281,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/cichlid.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/cichlid.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Visualizing What Cichlids with Different Cone Opsins See</papertitle>
@@ -300,7 +298,7 @@
             <div class="tab-pane fade" id="pills-projects" role="tabpanel" aria-labelledby="pills-projects-tab">
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/myst.png' class="img-fluid">
+                     <img loading="lazy" src='images/myst.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Myst: Stable Diffusion meets Mast3r for 3D World Generation </papertitle>
@@ -315,7 +313,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/offpolicyrl.png' class="img-fluid">
+                     <img loading="lazy" src='images/offpolicyrl.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Off-Policy RL that Prioritizes Value Function Improvement for Speedup</papertitle>
@@ -330,7 +328,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/vsn.png' class="img-fluid">
+                     <img loading="lazy" src='images/vsn.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Augmenting Physical Safety by Modifying Vehicular Networking Communication Methods</papertitle>
@@ -343,7 +341,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/joui.png' class="img-fluid">
+                     <img loading="lazy" src='images/joui.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Journal of Useless Information</papertitle>
@@ -357,7 +355,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/gta.png' class="img-fluid">
+                     <img loading="lazy" src='images/gta.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>GTA Perception</papertitle>
@@ -370,7 +368,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/cnn_lang_model.png' class="img-fluid">
+                     <img loading="lazy" src='images/cnn_lang_model.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Applying CNN Architectures to Sentence Generation</papertitle>
@@ -383,7 +381,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/xray.png' class="img-fluid">
+                     <img loading="lazy" src='images/xray.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Keras for X-Ray Radiology</papertitle>
@@ -397,7 +395,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/nervesense.png' class="img-fluid">
+                     <img loading="lazy" src='images/nervesense.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Nerve Sense</papertitle>
@@ -414,7 +412,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/dreambook.png' class="img-fluid">
+                     <img loading="lazy" src='images/dreambook.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Dreambook</papertitle>
@@ -428,7 +426,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/godgame.png' class="img-fluid">
+                     <img loading="lazy" src='images/godgame.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>God Game</papertitle>
@@ -442,7 +440,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/spot.png' class="img-fluid">
+                     <img loading="lazy" src='images/spot.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Spot</papertitle>
@@ -454,7 +452,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/cyberspace.png' class="img-fluid">
+                     <img loading="lazy" src='images/cyberspace.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Cyberspace</papertitle>
@@ -468,7 +466,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/clickopedia.png' class="img-fluid">
+                     <img loading="lazy" src='images/clickopedia.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Clickopedia</papertitle>
@@ -481,7 +479,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/ndsb.png' class="img-fluid">
+                     <img loading="lazy" src='images/ndsb.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>National Data Science Bowl</papertitle>
@@ -493,7 +491,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/autostock.png' class="img-fluid">
+                     <img loading="lazy" src='images/autostock.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Autostock</papertitle>
@@ -505,7 +503,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/airqualityuv.png' class="img-fluid">
+                     <img loading="lazy" src='images/airqualityuv.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Air Quality / UV / Pollen App</papertitle>
@@ -522,7 +520,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/anjoyd.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/anjoyd.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Anjoyd</papertitle>
@@ -538,7 +536,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/paybaq.png' class="img-fluid">
+                     <img loading="lazy" src='images/paybaq.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Paybaq</papertitle>
@@ -553,7 +551,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/hotdrop.png' class="img-fluid">
+                     <img loading="lazy" src='images/hotdrop.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Hotdrop</papertitle>
@@ -567,7 +565,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/arcadeglass.png' class="img-fluid">
+                     <img loading="lazy" src='images/arcadeglass.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Arcade Glass</papertitle>
@@ -579,7 +577,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/horserobot.png' class="img-fluid">
+                     <img loading="lazy" src='images/horserobot.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Bio-Inspired Robotics</papertitle>
@@ -594,7 +592,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/gridworld.png' class="img-fluid">
+                     <img loading="lazy" src='images/gridworld.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Medieval Gridworld </papertitle>
@@ -609,7 +607,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/heroquest.png' class="img-fluid">
+                     <img loading="lazy" src='images/heroquest.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Heroquest: A text-based adventure combat game </papertitle>
@@ -626,7 +624,7 @@
             <div class="tab-pane fade" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/softmax.svg' class="img-fluid">
+                     <img loading="lazy" src='images/softmax.svg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Softmax</papertitle>
@@ -641,7 +639,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/nyu.webp' class="img-fluid">
+                     <img loading="lazy" src='images/nyu.webp' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>New York University</papertitle>
@@ -656,7 +654,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/meta.webp' class="img-fluid" style="max-width: 65%; display: block; margin: 0 auto;">
+                     <img loading="lazy" src='images/meta.webp' class="img-fluid meta-logo">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Meta</papertitle>
@@ -671,7 +669,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/umich.png' class="img-fluid">
+                     <img loading="lazy" src='images/umich.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>University of Michigan</papertitle>
@@ -686,7 +684,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/voxel51.png' class="img-fluid">
+                     <img loading="lazy" src='images/voxel51.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Voxel 51</papertitle>
@@ -700,7 +698,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/gigster.png' class="img-fluid">
+                     <img loading="lazy" src='images/gigster.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Gigster</papertitle>
@@ -718,7 +716,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/unscan.png' class="img-fluid">
+                     <img loading="lazy" src='images/unscan.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Unscan</papertitle>
@@ -732,7 +730,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/redspread.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/redspread.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Redspread</papertitle>
@@ -746,7 +744,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/umd.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/umd.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Mammalian Physiology</papertitle>
@@ -761,7 +759,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/chum.png' class="img-fluid">
+                     <img loading="lazy" src='images/chum.png' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Cooperative Housing University of Maryland</papertitle>
@@ -775,7 +773,7 @@
                </div>
                <div class="row">
                   <div class="col-12 col-md-4 mb-auto mt-auto">
-                     <img src='images/whyc.jpg' class="img-fluid">
+                     <img loading="lazy" src='images/whyc.jpg' class="img-fluid">
                   </div>
                   <div class="col-12 col-md-8">
                      <papertitle>Woods Hole Yacht Club</papertitle>
@@ -788,18 +786,18 @@
                   </div>
                </div>
             </div>
-            <div class="row">
-               <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+               <div class="row">
+               <table class="footer-table">
                   <tbody>
                      <br>
-                     <p style="text-align:right;font-size:small;">
+                     <p class="footer-credit">
                         <a href="https://people.eecs.berkeley.edu/~barron/">Find the origin of nice webpages</a>
                      </p>
                </table>
             </div>
          </div>
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
       <script>
         document.addEventListener('DOMContentLoaded', function() {
             const linksElement = document.querySelector('.links');
@@ -885,7 +883,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const newsListContainer = document.getElementById("newsList");
   const timelineWrapper = document.querySelector('.d-none.d-md-block.position-relative');
   const timelineLine = document.getElementById("timelineLine");
-  const baseTimelineHeight = 130;
+  const baseTimelineHeight = 110;
   const baseLineTop = 0.65 * baseTimelineHeight;
   const baseMarkersTop = 0.55 * baseTimelineHeight;
   const leftOverflowSpacing = 55;

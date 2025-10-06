@@ -115,6 +115,77 @@ a {
     background-image: url(images/richard10.jpg);
     background-size: cover;
     background-position: 33% 50%;
+    padding: 1%;
+    margin-bottom: 3%;
+}
+
+.timeline-container {
+    margin-bottom: 0;
+}
+
+.hero-text {
+    background-color: #FFFFFF;
+    padding: 5px;
+    display: block;
+}
+
+.hero-name {
+    background-color: #FFFFFF;
+    padding: 5px 12px;
+    display: inline-block;
+}
+
+.hero-links {
+    background-color: #FFFFFF;
+    padding: 5px;
+    display: inline-block;
+}
+
+.news-heading {
+    border-bottom: 1px solid #ccc;
+}
+
+.meta-logo {
+    max-width: 65%;
+    margin: 0 auto;
+    display: block;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+}
+
+.tight-nav {
+    margin-top: -12px;
+}
+
+.timeline-desktop {
+    height: 110px;
+}
+
+.timeline-line {
+    transform: translateY(-50%);
+    height: 2px;
+    background: #ccc;
+}
+
+.timeline-news {
+    top: 10px;
+}
+
+.footer-table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: separate;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.footer-credit {
+    text-align: right;
+    font-size: small;
 }
 
 strong {
