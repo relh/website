@@ -3,7 +3,7 @@ name: Invalidate CloudFront Cache
 # Required repository secrets:
 #   AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY - programmatic user or role creds
 #   AWS_REGION - region where your CloudFront distribution is managed
-#   CLOUDFRONT_DISTRIBUTION_ID - e.g. E123ABC456789
+#   CLOUDFRONT_DISTRIBUTION_IDS - space- or newline-separated IDs (e.g. "E123ABC456789 E182DMQC2ZDWSY")
 
 on:
   push:
@@ -13,8 +13,6 @@ on:
 jobs:
   invalidate:
     runs-on: ubuntu-latest
-    env:
-      DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -23,8 +21,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Invalidate CloudFront cache
+      - name: Invalidate CloudFront cache(s)
+        env:
+          DISTRIBUTION_IDS: ${{ secrets.CLOUDFRONT_DISTRIBUTION_IDS }}
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id "$DISTRIBUTION_ID" \
-            --paths "/*"
+          if [ -z "${DISTRIBUTION_IDS}" ]; then
+            echo "CLOUDFRONT_DISTRIBUTION_IDS secret is not set" >&2
+            exit 1
+          fi
+
+          for id in $DISTRIBUTION_IDS; do
+            echo "Invalidating CloudFront distribution $id"
+            aws cloudfront create-invalidation --distribution-id "$id" --paths '/*'
+          done
