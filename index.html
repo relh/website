@@ -53,7 +53,7 @@
           <!-- Desktop Timeline View -->
           <div class="d-none d-md-block position-relative" style="height:130px;">
             <!-- Timeline line -->
-            <div class="position-absolute w-100" style="top:65%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
+            <div id="timelineLine" class="position-absolute w-100" style="top:65%; transform:translateY(-50%); height:2px; background:#ccc;"></div>
             <!-- Markers container -->
             <div class="position-absolute w-100" id="markers" style="top:55%;"></div>
             <!-- News cards container -->
@@ -834,10 +834,11 @@
       <script>
           // News items with links.
           const newsData = [
-            { title: "PhD Defense!", date: "2025-01-16", link: "https://cse.engin.umich.edu/event/learning-dense-visual-features-for-the-sun-and-natural-scenes" },
+            { title: "Defended PhD", date: "2025-01-16", link: "https://cse.engin.umich.edu/event/learning-dense-visual-features-for-the-sun-and-natural-scenes" },
             { title: "Talk @ Harvard Physics of Intelligence", date: "2025-03-27", link: "https://news.harvard.edu/gazette/story/newsplus/gift-establishes-new-program-in-physics-of-intelligence-at-center-for-brain-science/" },
-            { title: "SELDOM submitted to ICCV", date: "2025-03-07", link: "https://iccv.thecvf.com/Conferences/2025/Dates" },
-            { title: "Visiting Researcher @ Softmax", date: "2025-05-15", link: "https://softmax.com" }
+            { title: "@GECCO", date: "2025-07-14", link: "https://gecco-2025.sigevo.org/HomePage" },
+            { title: "@RLC", date: "2025-08-05", link: "https://www.amii.ca/events/reinforcement-learning-conference" },
+            { title: "@ICCV", date: "2025-10-19", link: "https://iccv.thecvf.com/Conferences/2025" }
             // Add more items as needed.
           ];
       </script>
@@ -883,9 +884,19 @@ document.addEventListener("DOMContentLoaded", function(){
   const newsItemsContainer = document.getElementById("newsItems");
   const newsListContainer = document.getElementById("newsList");
   const timelineWrapper = document.querySelector('.d-none.d-md-block.position-relative');
+  const timelineLine = document.getElementById("timelineLine");
   const baseTimelineHeight = 130;
-  const leftOverflowSpacing = 70;
+  const baseLineTop = 0.65 * baseTimelineHeight;
+  const baseMarkersTop = 0.55 * baseTimelineHeight;
+  const leftOverflowSpacing = 55;
   let leftOverflowCount = 0;
+
+  if (timelineLine) {
+    timelineLine.style.top = baseLineTop + "px";
+  }
+  if (markers) {
+    markers.style.top = baseMarkersTop + "px";
+  }
   
   // Compute horizontal position for a news date.
   function computePosition(dateStr) {
@@ -904,13 +915,13 @@ document.addEventListener("DOMContentLoaded", function(){
     const isLeftOverflow = posInfo.raw < 0;
     const overflowIndex = isLeftOverflow ? leftOverflowCount : 0;
     
-    // Desktop news card: smaller, rotated 45° upward.
+    // Desktop news card: smaller, rotated 25° upward.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
     card.style.left = pos + "%";
     card.style.top = isLeftOverflow ? (10 + overflowIndex * leftOverflowSpacing) + "px" : "10px";
-    card.style.transform = "translateX(-50%) rotate(-45deg)";
+    card.style.transform = "translateX(-50%) rotate(-25deg)";
     card.style.minWidth = "100px";
     card.style.background = "rgba(255,255,255,0.7)";
     card.innerHTML = `<div class="card-body p-0" style="padding:0.25rem;">
