@@ -99,7 +99,7 @@
                      <br>
                      <b>Richard E.L. Higgins</b> and David F. Fouhey
                      <br>
-                     <em>In submission to the International Conference on Computer Vision</em>, March 2025 <a href="data/seldom.bib">bibtex</a><br>
+                    <em>Accepted to S3DSGR, ICCV</em>, October 2025 <a href="data/seldom.bib">bibtex</a><br>
                      <br>
                      <p>‣ A latent diffusion image editing method that separates states and actions into composable neural noun and verb representations.</p>
                   </div>
@@ -882,23 +882,34 @@ document.addEventListener("DOMContentLoaded", function(){
   // Containers for news items.
   const newsItemsContainer = document.getElementById("newsItems");
   const newsListContainer = document.getElementById("newsList");
+  const timelineWrapper = document.querySelector('.d-none.d-md-block.position-relative');
+  const baseTimelineHeight = 130;
+  const leftOverflowSpacing = 70;
+  let leftOverflowCount = 0;
   
   // Compute horizontal position for a news date.
   function computePosition(dateStr) {
     const newsDate = new Date(dateStr);
-    return Math.max(0, Math.min(100, ((newsDate - start) / (end - start)) * 100));
+    const raw = ((newsDate - start) / (end - start)) * 100;
+    return {
+      raw,
+      clamped: Math.max(0, Math.min(100, raw))
+    };
   }
   
   // Render news items.
   newsData.forEach(item => {
-    const pos = computePosition(item.date);
+    const posInfo = computePosition(item.date);
+    const pos = posInfo.clamped;
+    const isLeftOverflow = posInfo.raw < 0;
+    const overflowIndex = isLeftOverflow ? leftOverflowCount : 0;
     
     // Desktop news card: smaller, rotated 45° upward.
     const card = document.createElement("div");
     card.className = "card";
     card.style.position = "absolute";
     card.style.left = pos + "%";
-    card.style.top = "10px";
+    card.style.top = isLeftOverflow ? (10 + overflowIndex * leftOverflowSpacing) + "px" : "10px";
     card.style.transform = "translateX(-50%) rotate(-45deg)";
     card.style.minWidth = "100px";
     card.style.background = "rgba(255,255,255,0.7)";
@@ -909,6 +920,9 @@ document.addEventListener("DOMContentLoaded", function(){
                         <small class="text-muted d-block" style="font-size:0.7rem;">${item.date}</small>
                       </div>`;
     newsItemsContainer.appendChild(card);
+    if (isLeftOverflow) {
+      leftOverflowCount += 1;
+    }
     
     // Mobile list item.
     const li = document.createElement("li");
@@ -919,6 +933,12 @@ document.addEventListener("DOMContentLoaded", function(){
                     </div>`;
     newsListContainer.appendChild(li);
   });
+  
+  if (timelineWrapper) {
+    const extraRows = Math.max(0, leftOverflowCount - 1);
+    const newHeight = baseTimelineHeight + extraRows * leftOverflowSpacing;
+    timelineWrapper.style.height = newHeight + "px";
+  }
 });
 </script>
    </body>
